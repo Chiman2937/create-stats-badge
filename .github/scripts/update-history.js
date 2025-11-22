@@ -12,29 +12,46 @@ if (isFirstRun) {
   const trafficData = JSON.parse(fs.readFileSync('temp/traffic.json', 'utf8'));
   const viewsData = JSON.parse(fs.readFileSync('temp/views.json', 'utf8'));
 
+  console.log('Traffic data:', JSON.stringify(trafficData, null, 2));
+  console.log('Views data:', JSON.stringify(viewsData, null, 2));
+
   let totalClones = 0;
   let totalVisitors = 0;
   const daily = [];
 
   // Clones 데이터 처리
-  trafficData.clones.forEach((item) => {
-    totalClones += item.count;
-    daily.push({
-      date: item.timestamp.split('T')[0],
-      clones: item.count,
-      visitors: 0,
+  if (trafficData.clones && Array.isArray(trafficData.clones)) {
+    console.log(`Processing ${trafficData.clones.length} days of clone data`);
+    trafficData.clones.forEach((item) => {
+      console.log(`Date: ${item.timestamp}, Clones: ${item.count}`);
+      totalClones += item.count;
+      daily.push({
+        date: item.timestamp.split('T')[0],
+        clones: item.count,
+        visitors: 0,
+      });
     });
-  });
+  } else {
+    console.error('No clones data found!');
+  }
 
   // Views 데이터 병합
-  viewsData.views.forEach((item) => {
-    const date = item.timestamp.split('T')[0];
-    const existing = daily.find((d) => d.date === date);
-    if (existing) {
-      existing.visitors = item.uniques;
-      totalVisitors += item.uniques;
-    }
-  });
+  if (viewsData.views && Array.isArray(viewsData.views)) {
+    console.log(`Processing ${viewsData.views.length} days of view data`);
+    viewsData.views.forEach((item) => {
+      console.log(`Date: ${item.timestamp}, Uniques: ${item.uniques}`);
+      const date = item.timestamp.split('T')[0];
+      const existing = daily.find((d) => d.date === date);
+      if (existing) {
+        existing.visitors = item.uniques;
+        totalVisitors += item.uniques;
+      }
+    });
+  } else {
+    console.error('No views data found!');
+  }
+
+  console.log(`Final totals: clones=${totalClones}, visitors=${totalVisitors}`);
 
   const history = {
     totalClones,
