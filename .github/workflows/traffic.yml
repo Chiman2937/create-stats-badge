@@ -23,8 +23,8 @@ jobs:
       - name: Get Repository Stats
         env:
           GITHUB_TOKEN: ${{ secrets.STATS_TOKEN }}
-          REPO_OWNER: chiyoung # 수정 필요
-          REPO_NAME: nextjs-project-setup # 수정 필요
+          REPO_OWNER: Chiman2937
+          REPO_NAME: create-next-app
         run: |
           # Traffic Stats
           TRAFFIC=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
