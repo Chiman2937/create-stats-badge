@@ -37,22 +37,18 @@ jobs:
             "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/traffic/views" \
             > temp/views.json
 
-          # 데이터 확인
-          echo "=== Traffic Data ==="
-          cat temp/traffic.json
-          echo ""
-          echo "=== Views Data ==="
-          cat temp/views.json
-          echo ""
-
           # 오늘 데이터만 추출
           TODAY_CLONES=$(jq -r '.clones[-1].count // 0' temp/traffic.json)
-          TODAY_VIEWS=$(jq -r '.views[-1].uniques // 0' temp/views.json)
+          TODAY_UNIQUE_CLONES=$(jq -r '.clones[-1].uniques // 0' temp/traffic.json)
+          TODAY_VIEWS=$(jq -r '.views[-1].count // 0' temp/views.json)
+          TODAY_UNIQUE_VIEWS=$(jq -r '.views[-1].uniques // 0' temp/views.json)
 
           echo "TODAY_CLONES=$TODAY_CLONES" >> $GITHUB_ENV
+          echo "TODAY_UNIQUE_CLONES=$TODAY_UNIQUE_CLONES" >> $GITHUB_ENV
           echo "TODAY_VIEWS=$TODAY_VIEWS" >> $GITHUB_ENV
+          echo "TODAY_UNIQUE_VIEWS=$TODAY_UNIQUE_VIEWS" >> $GITHUB_ENV
 
-          echo "Today's stats - Clones: $TODAY_CLONES, Views: $TODAY_VIEWS"
+          echo "Today's stats - Clones: $TODAY_CLONES ($TODAY_UNIQUE_CLONES unique), Views: $TODAY_VIEWS ($TODAY_UNIQUE_VIEWS unique)"
 
       - name: Update History
         run: node .github/scripts/update-history.js
