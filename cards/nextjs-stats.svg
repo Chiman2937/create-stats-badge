@@ -19,21 +19,21 @@
     <!-- Clones -->
     <text class="icon" x="0" y="0">📦</text>
     <text class="label" x="30" y="0">Total Clones (14 days):</text>
-    <text class="value" x="240" y="0">null</text>
+    <text class="value" x="240" y="0">168</text>
     
     <!-- Visitors -->
     <text class="icon" x="0" y="28">👁️</text>
     <text class="label" x="30" y="28">Unique Visitors:</text>
-    <text class="value" x="240" y="28">null</text>
+    <text class="value" x="240" y="28">14</text>
     
     <!-- Stars -->
     <text class="icon" x="0" y="56">⭐</text>
     <text class="label" x="30" y="56">Total Stars:</text>
-    <text class="value" x="240" y="56">null</text>
+    <text class="value" x="240" y="56">1</text>
     
     <!-- Forks -->
     <text class="icon" x="0" y="84">🔱</text>
     <text class="label" x="30" y="84">Total Forks:</text>
-    <text class="value" x="240" y="84">null</text>
+    <text class="value" x="240" y="84">0</text>
   </g>
 </svg>
