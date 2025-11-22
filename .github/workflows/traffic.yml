@@ -20,31 +20,31 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Get Repository Stats
+      - name: Get Traffic Stats
         env:
           GITHUB_TOKEN: ${{ secrets.STATS_TOKEN }}
           REPO_OWNER: Chiman2937
           REPO_NAME: create-next-app
         run: |
-          # Traffic Stats
+          # 전체 14일 데이터
           TRAFFIC=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
             "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/traffic/clones")
-          CLONES=$(echo $TRAFFIC | jq '.uniques')
 
           VIEWS_DATA=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
             "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/traffic/views")
-          VIEWS=$(echo $VIEWS_DATA | jq '.uniques')
 
-          # Repo Stats
-          REPO=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME")
-          STARS=$(echo $REPO | jq '.stargazers_count')
-          FORKS=$(echo $REPO | jq '.forks_count')
+          # 오늘 데이터만
+          TODAY_CLONES=$(echo $TRAFFIC | jq -r '.clones[-1].count // 0')
+          TODAY_VIEWS=$(echo $VIEWS_DATA | jq -r '.views[-1].uniques // 0')
 
-          echo "CLONES=$CLONES" >> $GITHUB_ENV
-          echo "VIEWS=$VIEWS" >> $GITHUB_ENV
-          echo "STARS=$STARS" >> $GITHUB_ENV
-          echo "FORKS=$FORKS" >> $GITHUB_ENV
+          # 환경변수로 export
+          echo "TRAFFIC_JSON=$TRAFFIC" >> $GITHUB_ENV
+          echo "VIEWS_JSON=$VIEWS_DATA" >> $GITHUB_ENV
+          echo "TODAY_CLONES=$TODAY_CLONES" >> $GITHUB_ENV
+          echo "TODAY_VIEWS=$TODAY_VIEWS" >> $GITHUB_ENV
+
+      - name: Update History
+        run: node .github/scripts/update-history.js
 
       - name: Generate Stats Card
         run: node .github/scripts/generate-card.js
@@ -53,6 +53,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add cards/
+          git add data/ cards/
           git diff --quiet && git diff --staged --quiet || \
-            (git commit -m "Update stats card" && git push)
+            (git commit -m "Update stats: clones=$TOTAL_CLONES, visitors=$TOTAL_VISITORS" && git push)
