@@ -1,6 +1,12 @@
 {
-  "totalClones": 0,
-  "totalVisitors": 0,
-  "lastUpdate": null,
-  "daily": []
+  "totalClones": 7,
+  "totalVisitors": 1,
+  "lastUpdate": "2025-11-22",
+  "daily": [
+    {
+      "date": "2025-11-22",
+      "clones": 7,
+      "visitors": 1
+    }
+  ]
 }
