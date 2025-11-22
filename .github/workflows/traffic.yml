@@ -47,7 +47,7 @@ jobs:
           echo "FORKS=$FORKS" >> $GITHUB_ENV
 
       - name: Generate Stats Card
-        run: node scripts/generate-card.js
+        run: node .github/scripts/generate-card.js
 
       - name: Commit and Push
         run: |
