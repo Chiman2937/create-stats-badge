@@ -1,0 +1,93 @@
+{
+  "totalClones": 340,
+  "totalUniqueClones": 187,
+  "totalVisitors": 790,
+  "totalUniqueVisitors": 30,
+  "lastUpdate": "2025-11-22",
+  "daily": [
+    {
+      "date": "2025-11-09",
+      "clones": 1,
+      "uniqueClones": 1,
+      "visitors": 0,
+      "uniqueVisitors": 0
+    },
+    {
+      "date": "2025-11-10",
+      "clones": 2,
+      "uniqueClones": 1,
+      "visitors": 4,
+      "uniqueVisitors": 1
+    },
+    {
+      "date": "2025-11-11",
+      "clones": 6,
+      "uniqueClones": 5,
+      "visitors": 2,
+      "uniqueVisitors": 1
+    },
+    {
+      "date": "2025-11-12",
+      "clones": 5,
+      "uniqueClones": 5,
+      "visitors": 16,
+      "uniqueVisitors": 3
+    },
+    {
+      "date": "2025-11-13",
+      "clones": 2,
+      "uniqueClones": 1,
+      "visitors": 2,
+      "uniqueVisitors": 1
+    },
+    {
+      "date": "2025-11-14",
+      "clones": 41,
+      "uniqueClones": 19,
+      "visitors": 208,
+      "uniqueVisitors": 1
+    },
+    {
+      "date": "2025-11-15",
+      "clones": 239,
+      "uniqueClones": 121,
+      "visitors": 355,
+      "uniqueVisitors": 2
+    },
+    {
+      "date": "2025-11-16",
+      "clones": 22,
+      "uniqueClones": 13,
+      "visitors": 81,
+      "uniqueVisitors": 2
+    },
+    {
+      "date": "2025-11-18",
+      "clones": 6,
+      "uniqueClones": 5,
+      "visitors": 7,
+      "uniqueVisitors": 2
+    },
+    {
+      "date": "2025-11-19",
+      "clones": 3,
+      "uniqueClones": 3,
+      "visitors": 55,
+      "uniqueVisitors": 11
+    },
+    {
+      "date": "2025-11-20",
+      "clones": 5,
+      "uniqueClones": 5,
+      "visitors": 12,
+      "uniqueVisitors": 5
+    },
+    {
+      "date": "2025-11-22",
+      "clones": 8,
+      "uniqueClones": 8,
+      "visitors": 48,
+      "uniqueVisitors": 1
+    }
+  ]
+}
