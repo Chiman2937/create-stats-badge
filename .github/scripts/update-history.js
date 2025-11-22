@@ -8,9 +8,9 @@ const isFirstRun = !fs.existsSync(historyPath);
 if (isFirstRun) {
   console.log('First run - initializing with 14 days data...');
 
-  // 14일 전체 데이터
-  const trafficData = JSON.parse(process.env.TRAFFIC_JSON);
-  const viewsData = JSON.parse(process.env.VIEWS_JSON);
+  // 파일에서 14일 전체 데이터 읽기
+  const trafficData = JSON.parse(fs.readFileSync('temp/traffic.json', 'utf8'));
+  const viewsData = JSON.parse(fs.readFileSync('temp/views.json', 'utf8'));
 
   let totalClones = 0;
   let totalVisitors = 0;

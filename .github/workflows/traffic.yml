@@ -26,22 +26,25 @@ jobs:
           REPO_OWNER: Chiman2937
           REPO_NAME: create-next-app
         run: |
-          # 전체 14일 데이터
-          TRAFFIC=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/traffic/clones")
+          mkdir -p temp
 
-          VIEWS_DATA=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/traffic/views")
+          # 전체 14일 데이터를 파일로 저장
+          curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/traffic/clones" \
+            > temp/traffic.json
 
-          # 오늘 데이터만
-          TODAY_CLONES=$(echo $TRAFFIC | jq -r '.clones[-1].count // 0')
-          TODAY_VIEWS=$(echo $VIEWS_DATA | jq -r '.views[-1].uniques // 0')
+          curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/traffic/views" \
+            > temp/views.json
 
-          # 환경변수로 export
-          echo "TRAFFIC_JSON=$TRAFFIC" >> $GITHUB_ENV
-          echo "VIEWS_JSON=$VIEWS_DATA" >> $GITHUB_ENV
+          # 오늘 데이터만 추출
+          TODAY_CLONES=$(jq -r '.clones[-1].count // 0' temp/traffic.json)
+          TODAY_VIEWS=$(jq -r '.views[-1].uniques // 0' temp/views.json)
+
           echo "TODAY_CLONES=$TODAY_CLONES" >> $GITHUB_ENV
           echo "TODAY_VIEWS=$TODAY_VIEWS" >> $GITHUB_ENV
+
+          echo "Today's stats - Clones: $TODAY_CLONES, Views: $TODAY_VIEWS"
 
       - name: Update History
         run: node .github/scripts/update-history.js
