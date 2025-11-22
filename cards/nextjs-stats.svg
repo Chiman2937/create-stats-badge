@@ -16,10 +16,10 @@
   <g transform="translate(20, 70)">
     <text class="icon" x="0" y="0">📦</text>
     <text class="label" x="30" y="0">Total Clones:</text>
-    <text class="value" x="240" y="0">7</text>
+    <text class="value" x="240" y="0">339</text>
     
     <text class="icon" x="0" y="35">👁️</text>
     <text class="label" x="30" y="35">Total Visitors:</text>
-    <text class="value" x="240" y="35">1</text>
+    <text class="value" x="240" y="35">30</text>
   </g>
 </svg>
