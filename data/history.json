@@ -1,9 +1,9 @@
 {
-  "totalClones": 1022,
-  "totalUniqueClones": 530,
-  "totalVisitors": 936,
-  "totalUniqueVisitors": 56,
-  "lastUpdate": "2025-12-14",
+  "totalClones": 1023,
+  "totalUniqueClones": 531,
+  "totalVisitors": 937,
+  "totalUniqueVisitors": 57,
+  "lastUpdate": "2025-12-15",
   "daily": [
     {
       "date": "2025-11-09",
@@ -241,6 +241,13 @@
       "clones": 1,
       "uniqueClones": 1,
       "visitors": 5,
+      "uniqueVisitors": 1
+    },
+    {
+      "date": "2025-12-15",
+      "clones": 1,
+      "uniqueClones": 1,
+      "visitors": 1,
       "uniqueVisitors": 1
     }
   ]
